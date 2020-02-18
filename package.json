@@ -7,7 +7,10 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint 'src/**/*.{js,jsx,tsx}'",
+    "pods": "cd ios && pod install && cd ..",
+    "pod-update": "cd ios && pod update && cd ..",
+    "clean": "watchman watch-del-all && rm -rf node_modules/ && yarn cache clean && yarn install && yarn start --reset-cache"
   },
   "dependencies": {
     "react": "16.9.0",
@@ -17,11 +20,14 @@
     "@babel/core": "^7.8.4",
     "@babel/runtime": "^7.8.4",
     "@react-native-community/eslint-config": "^0.0.7",
+    "@types/react": "^16.9.20",
+    "@types/react-native": "^0.61.15",
     "babel-jest": "^25.1.0",
     "eslint": "^6.8.0",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.58.0",
-    "react-test-renderer": "16.9.0"
+    "react-test-renderer": "16.9.0",
+    "typescript": "^3.7.5"
   },
   "jest": {
     "preset": "react-native"
