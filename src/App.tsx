@@ -6,8 +6,14 @@
  * @flow
  */
 
-import React from 'react';
-import { SafeAreaView, StyleSheet, ScrollView, View, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+  Text,
+} from 'react-native';
 
 import {
   Header,
@@ -57,41 +63,41 @@ const styles = StyleSheet.create({
 });
 
 function App() {
+  const [expenses, setExpenses] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchExpenses() {
+      try {
+        const response = await fetch(
+          'http://localhost:3000/expenses?limit=25&offset=0',
+        );
+        const responseJson = await response.json();
+        setExpenses(responseJson.expenses);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchExpenses();
+  }, []);
+
+  useEffect(() => {
+    console.log(expenses);
+  }, [expenses]);
+
+  if (loading) {
+    return <ActivityIndicator />;
+  }
+
   return (
     <SafeAreaView>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.scrollView}>
-        <Header />
-        <View style={styles.body}>
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Step One</Text>
-            <Text style={styles.sectionDescription}>
-              Edit <Text style={styles.highlight}>App.js</Text> to change this
-              screen and then come back to see your edits.
-            </Text>
-          </View>
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>See Your Changes</Text>
-            <Text style={styles.sectionDescription}>
-              <ReloadInstructions />
-            </Text>
-          </View>
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Debug</Text>
-            <Text style={styles.sectionDescription}>
-              <DebugInstructions />
-            </Text>
-          </View>
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Learn More</Text>
-            <Text style={styles.sectionDescription}>
-              Read the docs to discover what to do next:
-            </Text>
-          </View>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+      <FlatList
+        data={expenses}
+        renderItem={({ item }) => <Text>{item.user.email}</Text>}
+        keyExtractor={item => item.id}
+      />
     </SafeAreaView>
   );
 }

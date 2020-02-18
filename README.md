@@ -11,10 +11,12 @@ Follow the [React Native Getting Started](https://facebook.github.io/react-nativ
 Running the app
 
 - from the project root run
-  `yarn install`
+  `yarn setup`
 - and then run
   `yarn pods`
-- start the server by running
+- serve the api by running
+  `yarn serve`
+- Open a new terminal tab and start the server by running
   `yarn start`
-- and then in a new terminal tab run
+- Open a new terminal tab and then run
   `yarn ios`

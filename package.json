@@ -3,9 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "setup": "yarn install && cd api && yarn install && cd ..",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "serve": "cd api && yarn start",
     "test": "jest",
     "lint": "eslint 'src/**/*.{js,jsx,tsx}'",
     "pods": "cd ios && pod install && cd ..",
