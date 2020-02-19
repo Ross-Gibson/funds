@@ -9,6 +9,7 @@ import { useDynamicValue } from 'react-native-dark-mode';
 import { navigationRef } from '../services/navigation';
 import { Routes } from './routes';
 import { NavigationTheme } from '../theme';
+import { useLocalization } from '../contexts/localization';
 
 import Expenses from '../screens/Expenses';
 import Options from '../screens/Options';
@@ -16,6 +17,7 @@ import Options from '../screens/Options';
 const ExpensesStack = createNativeStackNavigator();
 
 function ExpensesStackScreen() {
+  const { translations } = useLocalization();
   return (
     <ExpensesStack.Navigator
       screenOptions={{
@@ -23,7 +25,13 @@ function ExpensesStackScreen() {
         headerLargeTitle: true,
         gestureEnabled: true,
       }}>
-      <ExpensesStack.Screen name={Routes.Expenses} component={Expenses} />
+      <ExpensesStack.Screen
+        name={Routes.Expenses}
+        component={Expenses}
+        options={{
+          title: translations['expenses.title'],
+        }}
+      />
     </ExpensesStack.Navigator>
   );
 }
@@ -35,6 +43,7 @@ interface OptionsStackScreenProps {
 }
 
 function OptionsStackScreen({ navigation }: OptionsStackScreenProps) {
+  const { translations } = useLocalization();
   return (
     <OptionsStack.Navigator
       initialRouteName={Routes.Options}
@@ -47,7 +56,7 @@ function OptionsStackScreen({ navigation }: OptionsStackScreenProps) {
         name={Routes.Options}
         component={Options}
         options={{
-          title: 'Options',
+          title: translations['options.title'],
         }}
       />
     </OptionsStack.Navigator>
@@ -57,6 +66,7 @@ function OptionsStackScreen({ navigation }: OptionsStackScreenProps) {
 const Tab = createBottomTabNavigator();
 
 function TabScreens() {
+  const { translations } = useLocalization();
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -76,14 +86,14 @@ function TabScreens() {
         name={Routes.Expenses}
         component={ExpensesStackScreen}
         options={{
-          title: 'Expenses',
+          title: translations['expenses.tabBar.title'],
         }}
       />
       <Tab.Screen
         name={Routes.Options}
         component={OptionsStackScreen}
         options={{
-          title: 'Options',
+          title: translations['options.tabBar.title'],
         }}
       />
     </Tab.Navigator>
