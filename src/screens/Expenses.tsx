@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   Text,
   View,
+  Platform,
 } from 'react-native';
 import { NavigationParams } from 'react-navigation';
 
@@ -19,9 +20,13 @@ function Expenses({ navigation }: Props) {
   useEffect(() => {
     async function fetchExpenses() {
       try {
-        const response = await fetch(
-          'http://localhost:3000/expenses?limit=25&offset=0',
-        );
+        // TODO: This assumes we are using a Simulator, or Emulator.
+        // This approach will not work if we try building to a device.
+        const baseUrl =
+          Platform.OS === 'android'
+            ? 'http://10.0.2.2:3000/'
+            : 'http://localhost:3000/';
+        const response = await fetch(baseUrl + 'expenses?limit=25&offset=0');
         const responseJson = await response.json();
         setExpenses(responseJson.expenses);
         setLoading(false);
