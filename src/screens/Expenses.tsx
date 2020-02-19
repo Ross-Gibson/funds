@@ -3,17 +3,18 @@ import {
   SafeAreaView,
   FlatList,
   ActivityIndicator,
-  Text,
   View,
   Platform,
 } from 'react-native';
 import { NavigationParams } from 'react-navigation';
+import { Theme, withTheme, Text } from 'react-native-paper';
 
 interface Props {
   navigation: NavigationParams;
+  theme: Theme;
 }
 
-function Expenses({ navigation }: Props) {
+function Expenses({ navigation, theme }: Props) {
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -64,4 +65,4 @@ function Expenses({ navigation }: Props) {
   );
 }
 
-export default Expenses;
+export default withTheme(Expenses);

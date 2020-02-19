@@ -4,9 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useDynamicValue } from 'react-native-dark-mode';
 
 import { navigationRef } from '../services/navigation';
 import { Routes } from './routes';
+import { NavigationTheme } from '../theme';
 
 import Expenses from '../screens/Expenses';
 import Options from '../screens/Options';
@@ -95,8 +97,10 @@ export type RootStackParamList = {
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 function NavigationStack() {
+  const navigationTheme = useDynamicValue(NavigationTheme);
+
   return (
-    <NavigationContainer ref={navigationRef}>
+    <NavigationContainer ref={navigationRef} theme={navigationTheme}>
       <RootStack.Navigator
         initialRouteName="Main"
         screenOptions={{

@@ -1,13 +1,16 @@
 import React from 'react';
 import { View } from 'react-native';
 import { NavigationParams } from 'react-navigation';
+import { Theme, withTheme } from 'react-native-paper';
 
 interface Props {
   navigation: NavigationParams;
+  theme: Theme;
 }
 
-function Options({ navigation }: Props) {
-  return <View style={{ backgroundColor: 'white' }} />;
+function Options({ navigation, theme }: Props) {
+  const { colors } = theme;
+  return <View style={{ backgroundColor: colors.background }} />;
 }
 
-export default Options;
+export default withTheme(Options);
