@@ -6,7 +6,7 @@
     "setup": "yarn install && cd api && yarn install && cd ..",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react-native start",
+    "start": "if [[ \"$(${ANDROID_HOME-~/Library/Android/sdk}/platform-tools/adb devices | grep 'device$')\" != \"\" ]]; then ${ANDROID_HOME-~/Library/Android/sdk}/platform-tools/adb reverse tcp:8081 tcp:8081; fi; react-native start",
     "serve": "cd api && yarn start",
     "test": "jest",
     "lint": "eslint 'src/**/*.{js,jsx,tsx}'",
@@ -25,7 +25,7 @@
     "react-native-gesture-handler": "^1.6.0",
     "react-native-reanimated": "^1.7.0",
     "react-native-safe-area-context": "^0.7.3",
-    "react-native-screens": "^2.0.0-beta.8",
+    "react-native-screens": "^2.0.0-alpha.34",
     "react-native-vector-icons": "^6.6.0"
   },
   "devDependencies": {
