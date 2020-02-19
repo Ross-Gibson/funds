@@ -1,65 +1,13 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React from 'react';
+import { enableScreens } from 'react-native-screens';
 
-import React, { useEffect, useState } from 'react';
-import {
-  SafeAreaView,
-  FlatList,
-  ActivityIndicator,
-  Text,
-  View,
-} from 'react-native';
+import NavigationStack from './navigation/Stack';
+
+// optimize the memory usage for screens: https://reactnavigation.org/docs/en/next/native-stack-navigator.html
+enableScreens();
 
 function App() {
-  const [expenses, setExpenses] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchExpenses() {
-      try {
-        const response = await fetch(
-          'http://localhost:3000/expenses?limit=25&offset=0',
-        );
-        const responseJson = await response.json();
-        setExpenses(responseJson.expenses);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    fetchExpenses();
-  }, []);
-
-  useEffect(() => {
-    console.log(expenses);
-  }, [expenses]);
-
-  if (loading) {
-    return <ActivityIndicator />;
-  }
-
-  return (
-    <SafeAreaView>
-      <FlatList
-        data={expenses}
-        renderItem={({ item }) => (
-          <View>
-            <Text>{item.date}</Text>
-            <Text>{item.merchant}</Text>
-            <Text>{item.amount.value}</Text>
-            <Text>{item.user.email}</Text>
-          </View>
-        )}
-        keyExtractor={item => item.id}
-      />
-    </SafeAreaView>
-  );
+  return <NavigationStack />;
 }
 
 export default App;

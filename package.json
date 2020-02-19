@@ -15,8 +15,18 @@
     "clean": "watchman watch-del-all && rm -rf node_modules/ && yarn cache clean && yarn install && yarn start --reset-cache"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.6",
+    "@react-navigation/bottom-tabs": "^5.0.5",
+    "@react-navigation/core": "^5.1.4",
+    "@react-navigation/native": "^5.0.5",
+    "@react-navigation/native-stack": "^5.0.5",
     "react": "16.9.0",
-    "react-native": "0.61.5"
+    "react-native": "0.61.5",
+    "react-native-gesture-handler": "^1.6.0",
+    "react-native-reanimated": "^1.7.0",
+    "react-native-safe-area-context": "^0.7.3",
+    "react-native-screens": "^2.0.0-beta.8",
+    "react-native-vector-icons": "^6.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
@@ -24,6 +34,8 @@
     "@react-native-community/eslint-config": "^0.0.7",
     "@types/react": "^16.9.20",
     "@types/react-native": "^0.61.15",
+    "@types/react-native-vector-icons": "^6.4.5",
+    "@types/react-navigation": "^3.4.0",
     "babel-jest": "^25.1.0",
     "eslint": "^6.8.0",
     "jest": "^25.1.0",
