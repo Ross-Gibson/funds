@@ -1,7 +1,7 @@
 {
-  "expense.addComment.placeholder": "Add comment",
-  "expense.addComment.navigationAction.dismiss": "Dismiss",
-  "expense.addReceipt.action": "Add receipt",
+  "expense.addComment.placeholder": "Añadir comentario",
+  "expense.addComment.navigationAction.dismiss": "despedir",
+  "expense.addReceipt.action": "Agregar recibo",
   "expenses.tabBar.title": "Gastos",
   "expenses.title": "Gastos",
   "options.tabBar.title": "Opciones",

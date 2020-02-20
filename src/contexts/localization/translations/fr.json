@@ -1,7 +1,7 @@
 {
-  "expense.addComment.placeholder": "Add comment",
-  "expense.addComment.navigationAction.dismiss": "Dismiss",
-  "expense.addReceipt.action": "Add receipt",
+  "expense.addComment.placeholder": "Ajouter un commentaire",
+  "expense.addComment.navigationAction.dismiss": "Rejeter",
+  "expense.addReceipt.action": "Ajouter un reçu",
   "expenses.tabBar.title": "Dépenses",
   "expenses.title": "Dépenses",
   "options.tabBar.title": "Les options",
