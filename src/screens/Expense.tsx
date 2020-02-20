@@ -117,7 +117,9 @@ function Expense({ navigation, theme, route }: Props) {
             icon={() => <Icon name={'plus'} size={24} color={colors.surface} />}
             color={colors.surface}
           />
-          <Text style={styles.addReceiptLabel}>Add receipt</Text>
+          <Text style={styles.addReceiptLabel}>
+            {translations['expense.addReceipt.action']}
+          </Text>
         </View>
       </View>
     </ScrollView>
