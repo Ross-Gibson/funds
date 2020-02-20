@@ -11,6 +11,7 @@ import { Routes } from './routes';
 import { NavigationTheme } from '../theme';
 import { useLocalization } from '../contexts/localization';
 
+import Expense from '../screens/Expense';
 import Expenses from '../screens/Expenses';
 import Options from '../screens/Options';
 
@@ -30,6 +31,13 @@ function ExpensesStackScreen() {
         component={Expenses}
         options={{
           title: translations['expenses.title'],
+        }}
+      />
+      <ExpensesStack.Screen
+        name={Routes.Expense}
+        component={Expense}
+        options={{
+          title: '',
         }}
       />
     </ExpensesStack.Navigator>

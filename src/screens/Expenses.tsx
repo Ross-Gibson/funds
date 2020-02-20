@@ -14,6 +14,7 @@ import moment from 'moment';
 
 import { RootState } from '../store/types';
 import { fetchExpenses as fetchExpensesAction } from '../store/expenses/actions';
+import { Routes } from '../navigation/routes';
 
 const styles = StyleSheet.create({
   container: {
@@ -89,6 +90,7 @@ function Expenses({
                 source={{ uri: 'https://i.pravatar.cc/48' }}
               />
             )}
+            onPress={() => navigation.navigate(Routes.Expense)}
           />
           <Divider inset={true} />
         </View>
