@@ -20,3 +20,8 @@ Running the app
   `yarn start`
 - Open a new terminal tab and then run
   `yarn ios`
+
+TODO:
+
+- Persist state using something like `redux-persist`
+- Display dates and times using the user perfered format 12/24hr
