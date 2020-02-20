@@ -1,5 +1,11 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Dimensions } from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import { NavigationParams } from 'react-navigation';
 import {
   Theme,
@@ -60,6 +66,10 @@ function Expense({ navigation, theme, route }: Props) {
   const { expense } = route.params;
   const { RTL, translations } = useLocalization();
 
+  const handleAddReceipt = () => {
+    console.log('handleAddReceipt');
+  };
+
   return (
     <ScrollView
       style={[styles.container, { backgroundColor: colors.background }]}>
@@ -104,14 +114,15 @@ function Expense({ navigation, theme, route }: Props) {
         )}
       />
       <View style={styles.contentContainer}>
-        <View
+        <TouchableOpacity
           style={[
             styles.surface,
             {
               borderColor: colors.disabled,
               backgroundColor: colors.disabled,
             },
-          ]}>
+          ]}
+          onPress={() => handleAddReceipt()}>
           <Avatar.Icon
             size={64}
             icon={() => <Icon name={'plus'} size={24} color={colors.surface} />}
@@ -120,7 +131,7 @@ function Expense({ navigation, theme, route }: Props) {
           <Text style={styles.addReceiptLabel}>
             {translations['expense.addReceipt.action']}
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
