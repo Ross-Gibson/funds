@@ -80,7 +80,7 @@ function Expenses({
           <List.Item
             style={styles.listItem}
             title={item.merchant}
-            description={moment(item.date).format('h:mm a')}
+            description={moment(item.date).format('hh:mm')}
             right={props => (
               <Text>{`${item.amount.value} ${item.amount.currency}`}</Text>
             )}
@@ -90,7 +90,9 @@ function Expenses({
                 source={{ uri: 'https://i.pravatar.cc/48' }}
               />
             )}
-            onPress={() => navigation.navigate(Routes.Expense)}
+            onPress={() =>
+              navigation.navigate(Routes.Expense, { expense: item })
+            }
           />
           <Divider inset={true} />
         </View>

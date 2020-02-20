@@ -10,12 +10,18 @@ import { navigationRef } from '../services/navigation';
 import { Routes } from './routes';
 import { NavigationTheme } from '../theme';
 import { useLocalization } from '../contexts/localization';
+import { Expense as ExpenseType } from '../store/expenses/types';
 
 import Expense from '../screens/Expense';
 import Expenses from '../screens/Expenses';
 import Options from '../screens/Options';
 
-const ExpensesStack = createNativeStackNavigator();
+export type ExpensesStackParamList = {
+  Expense: { expense: ExpenseType };
+  Expenses: undefined;
+};
+
+const ExpensesStack = createNativeStackNavigator<ExpensesStackParamList>();
 
 function ExpensesStackScreen() {
   const { translations } = useLocalization();
@@ -44,7 +50,11 @@ function ExpensesStackScreen() {
   );
 }
 
-const OptionsStack = createNativeStackNavigator();
+export type OptionsStackParamList = {
+  Options: undefined;
+};
+
+const OptionsStack = createNativeStackNavigator<OptionsStackParamList>();
 
 interface OptionsStackScreenProps {
   navigation: NavigationParams;
