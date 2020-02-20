@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationParams } from 'react-navigation';
 import { NavigationContainer } from '@react-navigation/native';
+import { CommonActions } from '@react-navigation/core';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -11,8 +12,13 @@ import { Routes } from './routes';
 import { NavigationTheme } from '../theme';
 import { useLocalization } from '../contexts/localization';
 import { Expense as ExpenseType } from '../store/expenses/types';
+import {
+  MaterialHeaderButtons,
+  Item,
+} from '../components/MaterialHeaderButtons';
 
 import Expense from '../screens/Expense';
+import ExpenseAddComment from '../screens/ExpenseAddComment';
 import Expenses from '../screens/Expenses';
 import Options from '../screens/Options';
 
@@ -47,6 +53,45 @@ function ExpensesStackScreen() {
         }}
       />
     </ExpensesStack.Navigator>
+  );
+}
+
+export type ExpenseAddCommentStackParamList = {
+  ExpenseAddComment: undefined;
+};
+
+const ExpenseAddCommentStack = createNativeStackNavigator<
+  ExpenseAddCommentStackParamList
+>();
+
+interface ExpenseAddCommentStackScreenProps {
+  navigation: NavigationParams;
+}
+
+function ExpenseAddCommentScreens({
+  navigation,
+}: ExpenseAddCommentStackScreenProps) {
+  const { translations } = useLocalization();
+  return (
+    <ExpenseAddCommentStack.Navigator>
+      <ExpenseAddCommentStack.Screen
+        name={Routes.ExpenseAddComment}
+        component={ExpenseAddComment}
+        options={{
+          title: translations['expense.addComment.placeholder'],
+          headerRight: () => (
+            <MaterialHeaderButtons>
+              <Item
+                title={
+                  translations['expense.addComment.navigationAction.dismiss']
+                }
+                onPress={() => navigation.dispatch(CommonActions.goBack())}
+              />
+            </MaterialHeaderButtons>
+          ),
+        }}
+      />
+    </ExpenseAddCommentStack.Navigator>
   );
 }
 
@@ -136,6 +181,10 @@ function NavigationStack() {
           stackPresentation: 'modal',
         }}>
         <RootStack.Screen name="Main" component={TabScreens} />
+        <RootStack.Screen
+          name={Routes.ExpenseAddComment}
+          component={ExpenseAddCommentScreens}
+        />
       </RootStack.Navigator>
     </NavigationContainer>
   );

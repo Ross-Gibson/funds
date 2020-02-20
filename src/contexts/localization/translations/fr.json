@@ -1,5 +1,6 @@
 {
   "expense.addComment.placeholder": "Add comment",
+  "expense.addComment.navigationAction.dismiss": "Dismiss",
   "expense.addReceipt.action": "Add receipt",
   "expenses.tabBar.title": "Dépenses",
   "expenses.title": "Dépenses",

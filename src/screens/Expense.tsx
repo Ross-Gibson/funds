@@ -21,6 +21,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { ExpensesStackParamList } from '../navigation/Stack';
 import { useLocalization } from '../contexts/localization';
+import { Routes } from '../navigation/routes';
 
 const goldenRatio = 1.62;
 
@@ -65,6 +66,12 @@ function Expense({ navigation, theme, route }: Props) {
   const { colors } = theme;
   const { expense } = route.params;
   const { RTL, translations } = useLocalization();
+
+  const handleAddComment = () => {
+    navigation.navigate(Routes.ExpenseAddComment, {
+      screen: Routes.ExpenseAddComment,
+    });
+  };
 
   const handleAddReceipt = () => {
     console.log('handleAddReceipt');
@@ -112,6 +119,7 @@ function Expense({ navigation, theme, route }: Props) {
             )}
           />
         )}
+        onPress={() => handleAddComment()}
       />
       <View style={styles.contentContainer}>
         <TouchableOpacity
