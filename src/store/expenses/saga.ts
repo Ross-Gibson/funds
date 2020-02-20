@@ -5,7 +5,7 @@ import { ExpensesActionTypes, FetchExpensesAction } from './types';
 
 function* fetchExpenses(action: FetchExpensesAction) {
   try {
-    const { limit, offset } = action;
+    const { limit, offset } = action.payload;
 
     const baseUrl =
       Platform.OS === 'android'
@@ -24,12 +24,11 @@ function* fetchExpenses(action: FetchExpensesAction) {
 
     yield put({
       type: ExpensesActionTypes.FETCH_EXPENSES_SUCCESS,
-      expenses: responseJson.expenses,
+      payload: { expenses: responseJson.expenses },
     });
   } catch (error) {
     yield put({
       type: ExpensesActionTypes.FETCH_EXPENSES_FAILURE,
-      message: error.message,
     });
   }
 }

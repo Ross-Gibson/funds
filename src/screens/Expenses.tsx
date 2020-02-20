@@ -33,7 +33,7 @@ function Expenses({
   fetchExpenses,
 }: Props) {
   useEffect(() => {
-    fetchExpenses(25, 0);
+    fetchExpenses({ limit: 25, offset: 0 });
   }, []);
 
   useEffect(() => {

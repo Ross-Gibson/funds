@@ -6,13 +6,17 @@ export enum ExpensesActionTypes {
 
 export interface FetchExpensesAction {
   type: typeof ExpensesActionTypes.FETCH_EXPENSES_REQUEST;
-  limit: number;
-  offset: number;
+  payload: {
+    limit: number;
+    offset: number;
+  };
 }
 
 export interface UpdateExpensesAction {
   type: typeof ExpensesActionTypes.FETCH_EXPENSES_SUCCESS;
-  expenses: Expense[];
+  payload: {
+    expenses: Expense[];
+  };
 }
 
 export type ExpensesAction = FetchExpensesAction | UpdateExpensesAction;

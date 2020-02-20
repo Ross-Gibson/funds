@@ -15,7 +15,7 @@ const expenses = (state = initialState, action: ExpensesAction) => {
     case ExpensesActionTypes.FETCH_EXPENSES_SUCCESS:
       return {
         ...state,
-        expenses: action.expenses,
+        expenses: action.payload.expenses,
         loading: false,
       };
     default:
