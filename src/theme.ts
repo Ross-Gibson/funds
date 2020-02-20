@@ -20,9 +20,6 @@ const AppLightTheme = {
     regular: 'Helvetica Neue',
     thin: 'HelveticaNeue-Thin',
   },
-  animation: {
-    scale: 1.0,
-  },
   roundness: 3, // roundness of common elements, such as buttons.
 };
 
@@ -45,9 +42,6 @@ const AppDarkTheme = {
     medium: 'HelveticaNeue-Medium',
     regular: 'Helvetica Neue',
     thin: 'HelveticaNeue-Thin',
-  },
-  animation: {
-    scale: 1.0,
   },
   roundness: 3,
 };
