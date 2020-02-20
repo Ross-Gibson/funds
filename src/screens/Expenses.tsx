@@ -1,46 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import {
-  SafeAreaView,
-  FlatList,
-  ActivityIndicator,
-  View,
-  Platform,
-} from 'react-native';
+import React, { useEffect } from 'react';
+import { SafeAreaView, FlatList, ActivityIndicator, View } from 'react-native';
 import { NavigationParams } from 'react-navigation';
 import { Theme, withTheme, Text } from 'react-native-paper';
+import { connect, ConnectedProps } from 'react-redux';
 
-interface Props {
+import { RootState } from '../store/types';
+import { fetchExpenses as fetchExpensesAction } from '../store/expenses/actions';
+
+const mapState = (state: RootState) => ({
+  loading: state.expenses.loading,
+  expenses: state.expenses.expenses,
+});
+
+const mapDispatch = {
+  fetchExpenses: fetchExpensesAction,
+};
+
+const connector = connect(mapState, mapDispatch);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+type Props = PropsFromRedux & {
   navigation: NavigationParams;
   theme: Theme;
-}
+};
 
-function Expenses({ navigation, theme }: Props) {
-  const [expenses, setExpenses] = useState([]);
-  const [loading, setLoading] = useState(true);
-
+function Expenses({
+  navigation,
+  theme,
+  loading,
+  expenses,
+  fetchExpenses,
+}: Props) {
   useEffect(() => {
-    async function fetchExpenses() {
-      try {
-        // TODO: This assumes we are using a Simulator, or Emulator.
-        // This approach will not work if we try building to a device.
-        const baseUrl =
-          Platform.OS === 'android'
-            ? 'http://10.0.2.2:3000/'
-            : 'http://localhost:3000/';
-        const response = await fetch(baseUrl + 'expenses?limit=25&offset=0');
-        const responseJson = await response.json();
-        setExpenses(responseJson.expenses);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    fetchExpenses();
+    fetchExpenses(25, 0);
   }, []);
 
   useEffect(() => {
-    console.log(expenses);
+    // TODO: Prevent double render
+    console.log('Expenses updated:', expenses);
   }, [expenses]);
 
   if (loading) {
@@ -51,6 +49,7 @@ function Expenses({ navigation, theme }: Props) {
     <SafeAreaView>
       <FlatList
         data={expenses}
+        extraData={expenses}
         renderItem={({ item }) => (
           <View>
             <Text>{item.date}</Text>
@@ -65,4 +64,4 @@ function Expenses({ navigation, theme }: Props) {
   );
 }
 
-export default withTheme(Expenses);
+export default withTheme(connector(Expenses));
