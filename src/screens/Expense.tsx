@@ -70,6 +70,7 @@ function Expense({ navigation, theme, route }: Props) {
   const handleAddComment = () => {
     navigation.navigate(Routes.ExpenseAddComment, {
       screen: Routes.ExpenseAddComment,
+      params: { expense: expense },
     });
   };
 

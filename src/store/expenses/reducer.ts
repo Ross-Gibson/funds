@@ -3,6 +3,7 @@ import { ExpensesAction, ExpensesState, ExpensesActionTypes } from './types';
 const initialState: ExpensesState = {
   loading: false,
   expenses: [],
+  savingComment: false,
 };
 
 const expenses = (state = initialState, action: ExpensesAction) => {
@@ -17,6 +18,17 @@ const expenses = (state = initialState, action: ExpensesAction) => {
         ...state,
         expenses: action.payload.expenses,
         loading: false,
+      };
+    case ExpensesActionTypes.ADD_COMMENT_REQUEST:
+      return {
+        ...state,
+        savingComment: true,
+      };
+    case ExpensesActionTypes.ADD_COMMENT_SUCCESS:
+      return {
+        ...state,
+        expense: action.payload.expense,
+        savingComment: false,
       };
     default:
       return state;

@@ -57,7 +57,7 @@ function ExpensesStackScreen() {
 }
 
 export type ExpenseAddCommentStackParamList = {
-  ExpenseAddComment: undefined;
+  ExpenseAddComment: { expense: ExpenseType };
 };
 
 const ExpenseAddCommentStack = createNativeStackNavigator<

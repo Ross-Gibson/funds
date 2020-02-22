@@ -2,6 +2,9 @@ export enum ExpensesActionTypes {
   FETCH_EXPENSES_REQUEST = 'FETCH_EXPENSES_REQUEST',
   FETCH_EXPENSES_SUCCESS = 'FETCH_EXPENSES_SUCCESS',
   FETCH_EXPENSES_FAILURE = 'FETCH_EXPENSES_FAILURE',
+  ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST',
+  ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS',
+  ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE',
 }
 
 export interface FetchExpensesAction {
@@ -19,7 +22,26 @@ export interface UpdateExpensesAction {
   };
 }
 
-export type ExpensesAction = FetchExpensesAction | UpdateExpensesAction;
+export interface AddCommentAction {
+  type: typeof ExpensesActionTypes.ADD_COMMENT_REQUEST;
+  payload: {
+    expenseId: string;
+    comment: string;
+  };
+}
+
+export interface UpdateCommentAction {
+  type: typeof ExpensesActionTypes.ADD_COMMENT_SUCCESS;
+  payload: {
+    expense: Expense;
+  };
+}
+
+export type ExpensesAction =
+  | FetchExpensesAction
+  | UpdateExpensesAction
+  | AddCommentAction
+  | UpdateCommentAction;
 
 export interface Expense {
   id: string;
@@ -42,4 +64,5 @@ export interface Expense {
 export interface ExpensesState {
   loading: boolean;
   expenses: Expense[];
+  savingComment: boolean;
 }
