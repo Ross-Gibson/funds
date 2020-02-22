@@ -2,14 +2,14 @@ import { DynamicValue } from 'react-native-dark-mode';
 
 const AppLightTheme = {
   colors: {
-    accent: '#FBBC05', // secondary color for your app which complements the primary color.
+    accent: '#4285F4', // secondary color for your app which complements the primary color.
     backdrop: 'rgba(0, 0, 0, 0.5)', // color for backdrops of various components such as modals.
     background: '#F6F6F6', // background color for pages, such as lists.
     disabled: 'rgba(0, 0, 0, 0.26)', // color for disabled elements.
     error: '#EA4335',
     notification: '#34A853',
     placeholder: 'rgba(0, 0, 0, 0.54)', // color for placeholder text, such as input placeholder.
-    primary: '#4285F4', // primary color for your app, usually your brand color.
+    primary: '#FF3366', // primary color for your app, usually your brand color.
     surface: '#F9F9F9', // background color for elements containing content, such as cards.
     text: '#242424', // text color for content.
   },
@@ -25,14 +25,14 @@ const AppLightTheme = {
 
 const AppDarkTheme = {
   colors: {
-    accent: '#FBBC05',
+    accent: '#4285F4',
     backdrop: 'rgba(0, 0, 0, 0.5)',
     background: '#242424',
     disabled: 'rgba(255, 255, 255, 0.3)',
     error: '#EA4335',
     notification: '#34A853',
     placeholder: 'rgba(255, 255, 255, 0.54)',
-    primary: '#4285F4',
+    primary: '#FF3366',
     surface: '#7B7B7B',
     text: '#F6F6F6',
   },
