@@ -26,3 +26,5 @@ TODO:
 - Persist state using something like `redux-persist`
 - Display dates and times using the user perfered format 12/24hr
 - Cache avatar images
+- Add a launch/splash screen
+- Add an app icon
