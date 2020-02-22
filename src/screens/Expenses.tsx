@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, ActivityIndicator, View, StyleSheet } from 'react-native';
 import { NavigationParams } from 'react-navigation';
 import {
@@ -8,6 +8,7 @@ import {
   List,
   Avatar,
   Divider,
+  Searchbar,
 } from 'react-native-paper';
 import { connect, ConnectedProps } from 'react-redux';
 import moment from 'moment';
@@ -53,6 +54,8 @@ function Expenses({
   fetchExpenses,
 }: Props) {
   const { colors } = theme;
+  const [data, setData] = useState(expenses);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     fetchExpenses({ limit: 25, offset: 0 });
@@ -63,6 +66,18 @@ function Expenses({
     console.log('Expenses updated:', expenses);
   }, [expenses]);
 
+  useEffect(() => {
+    const queryResults = expenses.filter(item => {
+      // TODO: Expand the search data to include all params
+      const itemData = `${item.merchant.toLowerCase()}   
+    ${item.amount.value.toLowerCase()} ${item.amount.currency.toLowerCase()}`;
+
+      return itemData.indexOf(searchQuery.toLowerCase()) > -1;
+    });
+
+    setData(queryResults);
+  }, [searchQuery, expenses]);
+
   if (loading) {
     return <ActivityIndicator />;
   }
@@ -70,8 +85,17 @@ function Expenses({
   return (
     <FlatList
       style={[styles.container, { backgroundColor: colors.background }]}
-      data={expenses}
-      extraData={expenses}
+      data={data}
+      extraData={data}
+      ListHeaderComponent={
+        <Searchbar
+          placeholder="Search"
+          onChangeText={query => {
+            setSearchQuery(query);
+          }}
+          value={searchQuery}
+        />
+      }
       renderItem={({ item }) => (
         <View>
           <List.Subheader>
