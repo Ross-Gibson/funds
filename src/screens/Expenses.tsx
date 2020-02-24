@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, ActivityIndicator, View, StyleSheet } from 'react-native';
+import { SectionList, ActivityIndicator, StyleSheet, View } from 'react-native';
 import { NavigationParams } from 'react-navigation';
 import {
   Theme,
@@ -21,6 +21,7 @@ import { Routes } from '../navigation/routes';
 import SearchField from '../components/molecules/SearchField';
 import { useLocalization } from '../contexts/localization';
 import IndicatorDot from '../components/atoms/IndicatorDot';
+import { Expense } from '../store/expenses/types';
 
 const styles = StyleSheet.create({
   container: {
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
   missingReceiptIndicator: {
     position: 'absolute',
     left: 4,
-    top: '50%',
+    alignSelf: 'center',
   },
 });
 
@@ -70,7 +71,7 @@ function Expenses({
   fetchExpenses,
 }: Props) {
   const { colors } = theme;
-  const [data, setData] = useState(expenses);
+  const [data, setData] = useState(mapToSections(expenses));
   const [searchQuery, setSearchQuery] = useState('');
   const [expanded, setExpanded] = useState(false);
   const [missingReceipts, setMissingReceipts] = useState(false);
@@ -99,7 +100,7 @@ function Expenses({
       });
     }
 
-    setData(queryResults);
+    setData(mapToSections(queryResults));
   }, [searchQuery, expenses, missingReceipts]);
 
   if (loading) {
@@ -114,10 +115,28 @@ function Expenses({
     setMissingReceipts(!missingReceipts);
   };
 
+  function mapToSections(expenseData: Expense[]) {
+    // TODO: Can this be improved? This seems like quite expensive.
+    const uniqueDates = [
+      ...new Set(
+        expenseData.map(expense => moment(expense.date).format('D MMM YYYY')),
+      ),
+    ];
+
+    const sections = uniqueDates.map(date => ({
+      title: date,
+      data: expenseData.filter(expense => {
+        return moment(expense.date).format('D MMM YYYY') === date;
+      }),
+    }));
+
+    return sections;
+  }
+
   return (
-    <FlatList
+    <SectionList
       style={[styles.container, { backgroundColor: colors.background }]}
-      data={data}
+      sections={data}
       extraData={data}
       ListHeaderComponent={
         <>
@@ -159,11 +178,13 @@ function Expenses({
           {translations['expenses.searchResults.empty.caption']}
         </Caption>
       }
+      renderSectionHeader={({ section: { title } }) => (
+        <View style={{ backgroundColor: colors.background }}>
+          <List.Subheader>{title}</List.Subheader>
+        </View>
+      )}
       renderItem={({ item }) => (
-        <>
-          <List.Subheader>
-            {moment(item.date).format('D MMM YYYY')}
-          </List.Subheader>
+        <View>
           {item.receipts.length === 0 && (
             <IndicatorDot style={styles.missingReceiptIndicator} />
           )}
@@ -185,9 +206,9 @@ function Expenses({
             }
           />
           <Divider inset={true} />
-        </>
+        </View>
       )}
-      keyExtractor={item => item.id}
+      keyExtractor={(item, index) => item.id + index}
     />
   );
 }
