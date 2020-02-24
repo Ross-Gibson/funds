@@ -122,6 +122,7 @@ function Expenses({
             }}
             value={searchQuery}
             onFilterPress={() => handleFilterPress()}
+            filterIndicator={missingReceipts}
           />
           {expanded ? (
             <>

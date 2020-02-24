@@ -26,11 +26,21 @@ const styles = StyleSheet.create({
     elevation: 0,
     backgroundColor: 'transparent',
   },
+  filterIndicator: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    borderWidth: 1,
+    position: 'absolute',
+    right: 16,
+    top: 12,
+  },
 });
 
 interface Props extends SearchbarProps {
   theme: Theme;
   onFilterPress: () => void;
+  filterIndicator: boolean;
 }
 
 function SearchField({
@@ -39,6 +49,7 @@ function SearchField({
   value,
   placeholder,
   onFilterPress,
+  filterIndicator,
 }: Props) {
   const { colors } = theme;
 
@@ -58,6 +69,14 @@ function SearchField({
           color={colors.text}
           onPress={onFilterPress}
         />
+        {filterIndicator && (
+          <View
+            style={[
+              styles.filterIndicator,
+              { backgroundColor: colors.accent, borderColor: colors.surface },
+            ]}
+          />
+        )}
       </View>
     </View>
   );
