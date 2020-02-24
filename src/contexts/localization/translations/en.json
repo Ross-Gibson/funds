@@ -6,6 +6,7 @@
   "expenses.title": "Expenses",
   "expenses.filter.missingReceipts.title": "Missing receipts",
   "expenses.searchBar.placeholder": "Search",
+  "expenses.searchResults.empty.caption": "There are no expenses matching your search query",
   "options.tabBar.title": "Options",
   "options.title": "Options"
 }

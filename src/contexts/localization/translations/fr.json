@@ -6,6 +6,7 @@
   "expenses.title": "Dépenses",
   "expenses.filter.missingReceipts.title": "Reçus manquants",
   "expenses.searchBar.placeholder": "Chercher",
+  "expenses.searchResults.empty.caption": "Il n'y a aucun frais correspondant à votre requête de recherche",
   "options.tabBar.title": "Les options",
   "options.title": "Les options"
 }

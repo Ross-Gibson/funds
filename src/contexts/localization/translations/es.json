@@ -6,6 +6,7 @@
   "expenses.title": "Gastos",
   "expenses.filter.missingReceipts.title": "Recibos faltantes",
   "expenses.searchBar.placeholder": "Buscar",
+  "expenses.searchResults.empty.caption": "No hay gastos que coincidan con su consulta de búsqueda.",
   "options.tabBar.title": "Opciones",
   "options.title": "Opciones"
 }

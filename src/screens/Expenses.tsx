@@ -9,6 +9,7 @@ import {
   Avatar,
   Divider,
   Switch,
+  Caption,
 } from 'react-native-paper';
 import { connect, ConnectedProps } from 'react-redux';
 import moment from 'moment';
@@ -28,6 +29,12 @@ const styles = StyleSheet.create({
     marginVertical: 0,
     height: 80,
     paddingHorizontal: 16,
+  },
+  searchResultsEmpty: {
+    textAlign: 'center',
+    paddingVertical: 48,
+    paddingHorizontal: 48,
+    fontSize: 18,
   },
 });
 
@@ -139,6 +146,11 @@ function Expenses({
             </>
           ) : null}
         </>
+      }
+      ListEmptyComponent={
+        <Caption style={styles.searchResultsEmpty}>
+          {translations['expenses.searchResults.empty.caption']}
+        </Caption>
       }
       renderItem={({ item }) => (
         <View>
