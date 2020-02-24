@@ -87,16 +87,30 @@ function Expenses({
   }, [expenses]);
 
   useEffect(() => {
-    let queryResults = expenses.filter(item => {
-      let itemData = `${item.merchant.toLowerCase()}   
-    ${item.amount.value.toLowerCase()} ${item.amount.currency.toLowerCase()}`;
+    // TODO: Can this be improved? This seems prone to error.
+    // Especially if a new property is added to the Expense type
+    // We could maybe look at using Lodash, and deep flatten the
+    // object values.
+    let queryResults = expenses.filter(expense => {
+      let expenseData = `
+        ${expense.amount.value.toLowerCase()} 
+        ${expense.amount.currency.toLowerCase()} 
+        ${moment(expense.date)
+          .format('D MMM YYYY')
+          .toLowerCase()} 
+        ${expense.merchant.toLowerCase()} 
+        ${expense.comment.toLowerCase()} 
+        ${expense.user.first.toLowerCase()} 
+        ${expense.user.last.toLowerCase()} 
+        ${expense.user.email.toLowerCase()}
+      `;
 
-      return itemData.indexOf(searchQuery.toLowerCase()) > -1;
+      return expenseData.indexOf(searchQuery.toLowerCase()) > -1;
     });
 
     if (missingReceipts) {
-      queryResults = queryResults.filter(item => {
-        return item.receipts.length === 0;
+      queryResults = queryResults.filter(expense => {
+        return expense.receipts.length === 0;
       });
     }
 
@@ -116,7 +130,8 @@ function Expenses({
   };
 
   function mapToSections(expenseData: Expense[]) {
-    // TODO: Can this be improved? This seems like quite expensive.
+    // TODO: Can this be improved? This seems quite expensive.
+    // We could maybe look at using Lodash?
     const uniqueDates = [
       ...new Set(
         expenseData.map(expense => moment(expense.date).format('D MMM YYYY')),
