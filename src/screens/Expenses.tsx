@@ -8,14 +8,17 @@ import {
   List,
   Avatar,
   Divider,
-  Searchbar,
+  Switch,
 } from 'react-native-paper';
 import { connect, ConnectedProps } from 'react-redux';
 import moment from 'moment';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { RootState } from '../store/types';
 import { fetchExpenses as fetchExpensesAction } from '../store/expenses/actions';
 import { Routes } from '../navigation/routes';
+import SearchField from '../components/molecules/SearchField';
+import { useLocalization } from '../contexts/localization';
 
 const styles = StyleSheet.create({
   container: {
@@ -56,6 +59,9 @@ function Expenses({
   const { colors } = theme;
   const [data, setData] = useState(expenses);
   const [searchQuery, setSearchQuery] = useState('');
+  const [expanded, setExpanded] = useState(false);
+  const [missingReceipts, setMissingReceipts] = useState(false);
+  const { translations } = useLocalization();
 
   useEffect(() => {
     fetchExpenses({ limit: 25, offset: 0 });
@@ -67,20 +73,33 @@ function Expenses({
   }, [expenses]);
 
   useEffect(() => {
-    const queryResults = expenses.filter(item => {
-      // TODO: Expand the search data to include all params
-      const itemData = `${item.merchant.toLowerCase()}   
+    let queryResults = expenses.filter(item => {
+      let itemData = `${item.merchant.toLowerCase()}   
     ${item.amount.value.toLowerCase()} ${item.amount.currency.toLowerCase()}`;
 
       return itemData.indexOf(searchQuery.toLowerCase()) > -1;
     });
 
+    if (missingReceipts) {
+      queryResults = queryResults.filter(item => {
+        return item.receipts.length === 0;
+      });
+    }
+
     setData(queryResults);
-  }, [searchQuery, expenses]);
+  }, [searchQuery, expenses, missingReceipts]);
 
   if (loading) {
     return <ActivityIndicator />;
   }
+
+  const handleFilterPress = () => {
+    setExpanded(!expanded);
+  };
+
+  const handleMissingReceiptsValueChange = () => {
+    setMissingReceipts(!missingReceipts);
+  };
 
   return (
     <FlatList
@@ -88,13 +107,38 @@ function Expenses({
       data={data}
       extraData={data}
       ListHeaderComponent={
-        <Searchbar
-          placeholder="Search"
-          onChangeText={query => {
-            setSearchQuery(query);
-          }}
-          value={searchQuery}
-        />
+        <>
+          <SearchField
+            placeholder={translations['expenses.searchBar.placeholder']}
+            onChangeText={query => {
+              setSearchQuery(query);
+            }}
+            value={searchQuery}
+            onFilterPress={() => handleFilterPress()}
+          />
+          {expanded ? (
+            <>
+              <List.Item
+                title={translations['expenses.filter.missingReceipts.title']}
+                left={props => (
+                  <List.Icon
+                    {...props}
+                    icon={() => (
+                      <Icon name={'receipt'} size={24} color={colors.text} />
+                    )}
+                  />
+                )}
+                right={props => (
+                  <Switch
+                    {...props}
+                    value={missingReceipts}
+                    onValueChange={() => handleMissingReceiptsValueChange()}
+                  />
+                )}
+              />
+            </>
+          ) : null}
+        </>
       }
       renderItem={({ item }) => (
         <View>

@@ -4,6 +4,8 @@
   "expense.addReceipt.action": "Agregar recibo",
   "expenses.tabBar.title": "Gastos",
   "expenses.title": "Gastos",
+  "expenses.filter.missingReceipts.title": "Recibos faltantes",
+  "expenses.searchBar.placeholder": "Buscar",
   "options.tabBar.title": "Opciones",
   "options.title": "Opciones"
 }

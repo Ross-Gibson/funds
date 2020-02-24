@@ -4,6 +4,8 @@
   "expense.addReceipt.action": "Add receipt",
   "expenses.tabBar.title": "Expenses",
   "expenses.title": "Expenses",
+  "expenses.filter.missingReceipts.title": "Missing receipts",
+  "expenses.searchBar.placeholder": "Search",
   "options.tabBar.title": "Options",
   "options.title": "Options"
 }

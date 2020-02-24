@@ -4,6 +4,8 @@
   "expense.addReceipt.action": "Ajouter un reçu",
   "expenses.tabBar.title": "Dépenses",
   "expenses.title": "Dépenses",
+  "expenses.filter.missingReceipts.title": "Reçus manquants",
+  "expenses.searchBar.placeholder": "Chercher",
   "options.tabBar.title": "Les options",
   "options.title": "Les options"
 }
