@@ -8,6 +8,8 @@ import {
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import IndicatorDot from '../atoms/IndicatorDot';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -69,14 +71,7 @@ function SearchField({
           color={colors.text}
           onPress={onFilterPress}
         />
-        {filterIndicator && (
-          <View
-            style={[
-              styles.filterIndicator,
-              { backgroundColor: colors.accent, borderColor: colors.surface },
-            ]}
-          />
-        )}
+        {filterIndicator && <IndicatorDot />}
       </View>
     </View>
   );
