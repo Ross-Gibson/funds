@@ -36,10 +36,15 @@ const styles = StyleSheet.create({
 interface ExpenseListItemProps {
   theme: Theme;
   expense: Expense;
-  onPress: () => void;
+  onPress?: () => void;
+  showIndicator?: boolean;
 }
 
-function ExpenseListItem({ expense, onPress }: ExpenseListItemProps) {
+function ExpenseListItem({
+  expense,
+  onPress,
+  showIndicator = false,
+}: ExpenseListItemProps) {
   const amount = `${expense.amount.value} ${expense.amount.currency}`;
   return (
     <>
@@ -58,13 +63,15 @@ function ExpenseListItem({ expense, onPress }: ExpenseListItemProps) {
             {...props}
             icon={() => (
               <>
-                {expense.receipts.length === 0 && (
+                {expense.receipts.length === 0 && showIndicator && (
                   <IndicatorDot style={styles.indicator} />
                 )}
                 <Avatar.Image
                   {...props}
                   size={48}
-                  source={{ uri: 'https://i.pravatar.cc/48' }}
+                  source={{
+                    uri: 'https://i.pravatar.cc/48?u=' + expense.user.email,
+                  }}
                 />
               </>
             )}

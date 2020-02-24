@@ -38,6 +38,7 @@ const mapDispatch = {
   fetchExpenses: fetchExpensesAction,
 };
 
+// eslint-disable-next-line prettier/prettier
 const connector = connect(mapState, mapDispatch);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
@@ -188,6 +189,7 @@ function Expenses({
       renderItem={({ item }) => (
         <ExpenseListItem
           expense={item}
+          showIndicator
           onPress={() => navigation.navigate(Routes.Expense, { expense: item })}
         />
       )}

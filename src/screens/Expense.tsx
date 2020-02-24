@@ -16,12 +16,12 @@ import {
   Divider,
 } from 'react-native-paper';
 import { RouteProp } from '@react-navigation/native';
-import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { ExpensesStackParamList } from '../navigation/Stack';
 import { useLocalization } from '../contexts/localization';
 import { Routes } from '../navigation/routes';
+import ExpenseListItem from '../components/molecules/ExpenseListItem';
 
 const goldenRatio = 1.62;
 
@@ -81,23 +81,8 @@ function Expense({ navigation, theme, route }: Props) {
   return (
     <ScrollView
       style={[styles.container, { backgroundColor: colors.background }]}>
-      <List.Item
-        style={styles.listItem}
-        title={expense.merchant}
-        description={`${moment(expense.date).format('D MMM YYYY')} at ${moment(
-          expense.date,
-        ).format('hh:mm')}`}
-        right={props => (
-          <Text>{`${expense.amount.value} ${expense.amount.currency}`}</Text>
-        )}
-        left={props => (
-          <Avatar.Image
-            size={48}
-            source={{ uri: 'https://i.pravatar.cc/48' }}
-          />
-        )}
-      />
       <Divider inset={true} />
+      <ExpenseListItem expense={expense} />
       <List.Item
         title={
           expense.comment === ''

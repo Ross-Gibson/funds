@@ -28,6 +28,7 @@ const mapDispatch = {
   addComment: addCommentAction,
 };
 
+// eslint-disable-next-line prettier/prettier
 const connector = connect(mapState, mapDispatch);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
