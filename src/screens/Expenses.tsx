@@ -20,6 +20,7 @@ import { fetchExpenses as fetchExpensesAction } from '../store/expenses/actions'
 import { Routes } from '../navigation/routes';
 import SearchField from '../components/molecules/SearchField';
 import { useLocalization } from '../contexts/localization';
+import IndicatorDot from '../components/atoms/IndicatorDot';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,6 +36,11 @@ const styles = StyleSheet.create({
     paddingVertical: 48,
     paddingHorizontal: 48,
     fontSize: 18,
+  },
+  missingReceiptIndicator: {
+    position: 'absolute',
+    left: 4,
+    top: '50%',
   },
 });
 
@@ -154,10 +160,13 @@ function Expenses({
         </Caption>
       }
       renderItem={({ item }) => (
-        <View>
+        <>
           <List.Subheader>
             {moment(item.date).format('D MMM YYYY')}
           </List.Subheader>
+          {item.receipts.length === 0 && (
+            <IndicatorDot style={styles.missingReceiptIndicator} />
+          )}
           <List.Item
             style={styles.listItem}
             title={item.merchant}
@@ -176,7 +185,7 @@ function Expenses({
             }
           />
           <Divider inset={true} />
-        </View>
+        </>
       )}
       keyExtractor={item => item.id}
     />

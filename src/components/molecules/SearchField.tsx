@@ -29,10 +29,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   filterIndicator: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    borderWidth: 1,
     position: 'absolute',
     right: 16,
     top: 12,
@@ -71,7 +67,7 @@ function SearchField({
           color={colors.text}
           onPress={onFilterPress}
         />
-        {filterIndicator && <IndicatorDot />}
+        {filterIndicator && <IndicatorDot style={styles.filterIndicator} />}
       </View>
     </View>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import { Theme, withTheme } from 'react-native-paper';
 
 const styles = StyleSheet.create({
@@ -8,17 +8,15 @@ const styles = StyleSheet.create({
     height: 8,
     borderRadius: 4,
     borderWidth: 1,
-    position: 'absolute',
-    right: 16,
-    top: 12,
   },
 });
 
 interface Props {
   theme: Theme;
+  style?: ViewStyle;
 }
 
-function IndicatorDot({ theme }: Props) {
+function IndicatorDot({ theme, style }: Props) {
   const { colors } = theme;
 
   return (
@@ -26,6 +24,7 @@ function IndicatorDot({ theme }: Props) {
       style={[
         styles.indicator,
         { backgroundColor: colors.accent, borderColor: colors.surface },
+        style,
       ]}
     />
   );
