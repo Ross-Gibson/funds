@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
 });
 
-interface Props extends SearchbarProps {
+export interface SearchFieldProps extends SearchbarProps {
   theme: Theme;
   onFilterPress: () => void;
   filterIndicator: boolean;
@@ -48,7 +48,7 @@ function SearchField({
   placeholder,
   onFilterPress,
   filterIndicator,
-}: Props) {
+}: SearchFieldProps) {
   const { colors } = theme;
 
   return (

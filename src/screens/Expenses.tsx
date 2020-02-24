@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SectionList, ActivityIndicator, StyleSheet, View } from 'react-native';
 import { NavigationParams } from 'react-navigation';
-import {
-  Theme,
-  withTheme,
-  Text,
-  List,
-  Avatar,
-  Divider,
-  Switch,
-  Caption,
-} from 'react-native-paper';
+import { Theme, withTheme, List, Caption, Switch } from 'react-native-paper';
 import { connect, ConnectedProps } from 'react-redux';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -18,19 +9,14 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RootState } from '../store/types';
 import { fetchExpenses as fetchExpensesAction } from '../store/expenses/actions';
 import { Routes } from '../navigation/routes';
-import SearchField from '../components/molecules/SearchField';
+import SearchHeader from '../components/organisms/SearchHeader';
+import ExpenseListItem from '../components/molecules/ExpenseListItem';
 import { useLocalization } from '../contexts/localization';
-import IndicatorDot from '../components/atoms/IndicatorDot';
 import { Expense } from '../store/expenses/types';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  listItem: {
-    marginVertical: 0,
-    height: 80,
-    paddingHorizontal: 16,
   },
   searchResultsEmpty: {
     textAlign: 'center',
@@ -38,10 +24,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 48,
     fontSize: 18,
   },
-  missingReceiptIndicator: {
-    position: 'absolute',
-    left: 4,
-    alignSelf: 'center',
+  sectionHeader: {
+    paddingTop: 16,
   },
 });
 
@@ -154,17 +138,16 @@ function Expenses({
       sections={data}
       extraData={data}
       ListHeaderComponent={
-        <>
-          <SearchField
-            placeholder={translations['expenses.searchBar.placeholder']}
-            onChangeText={query => {
-              setSearchQuery(query);
-            }}
-            value={searchQuery}
-            onFilterPress={() => handleFilterPress()}
-            filterIndicator={missingReceipts}
-          />
-          {expanded ? (
+        <SearchHeader
+          placeholder={translations['expenses.searchBar.placeholder']}
+          onChangeText={query => {
+            setSearchQuery(query);
+          }}
+          searchQuery={searchQuery}
+          filterIndicator={missingReceipts}
+          onFilterPress={() => handleFilterPress()}
+          expanded={expanded}
+          ExpandedComponent={
             <>
               <List.Item
                 title={translations['expenses.filter.missingReceipts.title']}
@@ -185,8 +168,8 @@ function Expenses({
                 )}
               />
             </>
-          ) : null}
-        </>
+          }
+        />
       }
       ListEmptyComponent={
         <Caption style={styles.searchResultsEmpty}>
@@ -194,34 +177,19 @@ function Expenses({
         </Caption>
       }
       renderSectionHeader={({ section: { title } }) => (
-        <View style={{ backgroundColor: colors.background }}>
+        <View
+          style={[
+            styles.sectionHeader,
+            { backgroundColor: colors.background },
+          ]}>
           <List.Subheader>{title}</List.Subheader>
         </View>
       )}
       renderItem={({ item }) => (
-        <View>
-          {item.receipts.length === 0 && (
-            <IndicatorDot style={styles.missingReceiptIndicator} />
-          )}
-          <List.Item
-            style={styles.listItem}
-            title={item.merchant}
-            description={moment(item.date).format('hh:mm')}
-            right={props => (
-              <Text>{`${item.amount.value} ${item.amount.currency}`}</Text>
-            )}
-            left={props => (
-              <Avatar.Image
-                size={48}
-                source={{ uri: 'https://i.pravatar.cc/48' }}
-              />
-            )}
-            onPress={() =>
-              navigation.navigate(Routes.Expense, { expense: item })
-            }
-          />
-          <Divider inset={true} />
-        </View>
+        <ExpenseListItem
+          expense={item}
+          onPress={() => navigation.navigate(Routes.Expense, { expense: item })}
+        />
       )}
       keyExtractor={(item, index) => item.id + index}
     />
