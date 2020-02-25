@@ -28,3 +28,5 @@ TODO:
 - Cache avatar images
 - Add a launch/splash screen
 - Add an app icon
+- After adding a comment, it is possible to edit it, but nt to remove it.
+- Show the full comment on the Expense detail view rather than truncating
