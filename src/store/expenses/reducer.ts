@@ -27,7 +27,11 @@ const expenses = (state = initialState, action: ExpensesAction) => {
     case ExpensesActionTypes.ADD_COMMENT_SUCCESS:
       return {
         ...state,
-        expense: action.payload.expense,
+        expenses: state.expenses.map(expense =>
+          expense.id === action.payload.expense.id
+            ? action.payload.expense
+            : expense,
+        ),
         savingComment: false,
       };
     default:

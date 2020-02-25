@@ -17,11 +17,14 @@ import {
 } from 'react-native-paper';
 import { RouteProp } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { connect, ConnectedProps } from 'react-redux';
 
 import { ExpensesStackParamList } from '../navigation/Stack';
 import { useLocalization } from '../contexts/localization';
 import { Routes } from '../navigation/routes';
 import ExpenseListItem from '../components/molecules/ExpenseListItem';
+import { RootState } from '../store/types';
+import { getExpenseById } from '../store/expenses/selector';
 
 const goldenRatio = 1.62;
 
@@ -56,16 +59,33 @@ const styles = StyleSheet.create({
 
 type ExpenseScreenRouteProp = RouteProp<ExpensesStackParamList, 'Expense'>;
 
-interface Props {
+const mapState = (state: RootState, ownProps: ExpenseProps) => ({
+  expense: getExpenseById(state, ownProps.route.params.expense.id),
+});
+
+// eslint-disable-next-line prettier/prettier
+const connector = connect(mapState, {});
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+interface ExpenseProps {
   navigation: NavigationParams;
   theme: Theme;
   route: ExpenseScreenRouteProp;
 }
 
-function Expense({ navigation, theme, route }: Props) {
+type Props = ExpenseProps & PropsFromRedux;
+
+function Expense({ navigation, theme, expense }: Props) {
   const { colors } = theme;
-  const { expense } = route.params;
   const { RTL, translations } = useLocalization();
+
+  if (expense === undefined) {
+    console.log('[ERROR]: Undefined `Expense` model.');
+    return null;
+  }
+
+  console.log(expense);
 
   const handleAddComment = () => {
     navigation.navigate(Routes.ExpenseAddComment, {
@@ -131,4 +151,4 @@ function Expense({ navigation, theme, route }: Props) {
   );
 }
 
-export default withTheme(Expense);
+export default withTheme(connector(Expense));

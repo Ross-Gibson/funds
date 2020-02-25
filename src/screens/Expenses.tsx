@@ -68,7 +68,6 @@ function Expenses({
 
   useEffect(() => {
     // TODO: Prevent double render
-    console.log('Expenses updated:', expenses);
   }, [expenses]);
 
   useEffect(() => {
