@@ -133,11 +133,11 @@ function TabScreens() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+        tabBarIcon: ({ color, size }) => {
+          let iconName = '';
 
           if (route.name === Routes.Expenses) {
-            iconName = `home${focused ? '' : '-outline'}`;
+            iconName = 'credit-card-multiple';
           } else if (route.name === Routes.Options) {
             iconName = 'dots-horizontal';
           }
