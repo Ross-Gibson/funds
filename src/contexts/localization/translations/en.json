@@ -7,6 +7,9 @@
   "expenses.filter.missingReceipts.title": "Missing receipts",
   "expenses.searchBar.placeholder": "Search",
   "expenses.searchResults.empty.caption": "There are no expenses matching your search query",
+  "expenseAddComment.textField.title": "Comment",
+  "expenseAddComment.description": "In a few words, explain the reason for this expense",
+  "expenseAddComment.saveButton.title": "Save",
   "options.tabBar.title": "Options",
   "options.title": "Options"
 }

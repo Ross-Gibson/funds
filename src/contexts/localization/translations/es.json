@@ -7,6 +7,9 @@
   "expenses.filter.missingReceipts.title": "Recibos faltantes",
   "expenses.searchBar.placeholder": "Buscar",
   "expenses.searchResults.empty.caption": "No hay gastos que coincidan con su consulta de búsqueda.",
+  "expenseAddComment.textField.title": "Comentario",
+  "expenseAddComment.description": "En pocas palabras, explique la razón de este gasto.",
+  "expenseAddComment.saveButton.title": "Salvar",
   "options.tabBar.title": "Opciones",
   "options.title": "Opciones"
 }
