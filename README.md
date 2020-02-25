@@ -23,6 +23,7 @@ Running the app
 
 TODO:
 
+- Fetch more expenses when you scroll to the bottom of the expense list
 - Persist state using something like `redux-persist`
 - Display dates and times using the user perfered format 12/24hr
 - Cache avatar images
