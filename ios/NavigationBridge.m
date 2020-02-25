@@ -15,9 +15,10 @@
 RCT_EXPORT_MODULE(NavigationBridge);
 
 RCT_EXPORT_METHOD(changeToNativeView) {
-  NSLog(@"RN binding - Native View - Loading MyViewController.swift");
-  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-  [appDelegate showAddReceiptViewController];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate showAddReceiptViewController];
+  });
 }
 
 @end

@@ -8,14 +8,10 @@
 #import <React/RCTBridgeDelegate.h>
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, RCTBridgeDelegate> {
-  NSDictionary *options;
-  UIViewController *viewController;
-}
+@interface AppDelegate : UIResponder <UIApplicationDelegate, RCTBridgeDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
 
-- (void)setInitialViewController;
 - (void)showAddReceiptViewController;
 
 @end
