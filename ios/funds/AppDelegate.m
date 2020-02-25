@@ -10,12 +10,18 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import "funds-Swift.h"
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  options = launchOptions;
+  [self setInitialViewController];
+  return YES;
+}
+
+- (void)setInitialViewController {
+  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:options];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"funds"
                                             initialProperties:nil];
@@ -27,11 +33,17 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  return YES;
 }
 
-- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
-{
+- (void)showAddReceiptViewController {
+  AddReceiptViewController *addReceiptViewController = [[AddReceiptViewController alloc] initWithNibName:@"AddReceiptViewController" bundle:nil];
+  UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:addReceiptViewController];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self.window.rootViewController presentViewController:navigationController animated:true completion:NULL];
+  });
+}
+
+- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge {
 #if DEBUG
   return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 #else

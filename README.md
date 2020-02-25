@@ -30,3 +30,4 @@ TODO:
 - Add an app icon
 - After adding a comment, it is possible to edit it, but nt to remove it.
 - Show the full comment on the Expense detail view rather than truncating
+- Refactor calls to the API to reduce code duplication

@@ -5,6 +5,8 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
+  NativeModules,
+  Platform,
 } from 'react-native';
 import { NavigationParams } from 'react-navigation';
 import {
@@ -95,6 +97,9 @@ function Expense({ navigation, theme, expense }: Props) {
   };
 
   const handleAddReceipt = () => {
+    if (Platform.OS === 'ios') {
+      NativeModules.NavigationBridge.changeToNativeView();
+    }
     console.log('handleAddReceipt');
   };
 
