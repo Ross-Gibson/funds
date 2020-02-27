@@ -98,7 +98,7 @@ function Expense({ navigation, theme, expense }: Props) {
 
   const handleAddReceipt = () => {
     if (Platform.OS === 'ios') {
-      NativeModules.NavigationBridge.changeToNativeView();
+      NativeModules.NavigationBridge.showAddReceipt();
     }
     console.log('handleAddReceipt');
   };

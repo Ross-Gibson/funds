@@ -3,7 +3,7 @@
 //  funds
 //
 //  Created by Ross Gibson on 25/02/2020.
-//  Copyright © 2020 Facebook. All rights reserved.
+//  Copyright © 2020 Ross Gibson. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NavigationBridge : NSObject <RCTBridgeModule>
 
-- (void)changeToNativeView;
+- (void)showAddReceipt;
+- (void)showDetail;
 
 @end
 
