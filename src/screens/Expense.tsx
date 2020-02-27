@@ -87,8 +87,6 @@ function Expense({ navigation, theme, expense }: Props) {
     return null;
   }
 
-  console.log(expense);
-
   const handleAddComment = () => {
     navigation.navigate(Routes.ExpenseAddComment, {
       screen: Routes.ExpenseAddComment,
@@ -100,7 +98,6 @@ function Expense({ navigation, theme, expense }: Props) {
     if (Platform.OS === 'ios') {
       NativeModules.NavigationBridge.showAddReceipt();
     }
-    console.log('handleAddReceipt');
   };
 
   return (
