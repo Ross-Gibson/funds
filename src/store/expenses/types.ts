@@ -5,6 +5,9 @@ export enum ExpensesActionTypes {
   ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST',
   ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS',
   ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE',
+  ADD_RECEIPT_REQUEST = 'ADD_RECEIPT_REQUEST',
+  ADD_RECEIPT_SUCCESS = 'ADD_RECEIPT_SUCCESS',
+  ADD_RECEIPT_FAILURE = 'ADD_RECEIPT_FAILURE',
 }
 
 export interface FetchExpensesAction {
@@ -37,11 +40,28 @@ export interface UpdateCommentAction {
   };
 }
 
+export interface AddReceiptAction {
+  type: typeof ExpensesActionTypes.ADD_RECEIPT_REQUEST;
+  payload: {
+    expenseId: string;
+    receipt: string;
+  };
+}
+
+export interface AddReceiptSuccessAction {
+  type: typeof ExpensesActionTypes.ADD_RECEIPT_SUCCESS;
+  payload: {
+    expense: Expense;
+  };
+}
+
 export type ExpensesAction =
   | FetchExpensesAction
   | UpdateExpensesAction
   | AddCommentAction
-  | UpdateCommentAction;
+  | UpdateCommentAction
+  | AddReceiptAction
+  | AddReceiptSuccessAction;
 
 export interface Expense {
   id: string;
@@ -65,4 +85,5 @@ export interface ExpensesState {
   loading: boolean;
   expenses: Expense[];
   savingComment: boolean;
+  uploadingReceipt: boolean;
 }

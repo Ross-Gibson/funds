@@ -19,3 +19,13 @@ export function addComment(payload: {
     payload,
   };
 }
+
+export function addReceipt(payload: {
+  receipt: string;
+  expenseId: string;
+}): ExpensesAction {
+  return {
+    type: ExpensesActionTypes.ADD_RECEIPT_REQUEST,
+    payload,
+  };
+}

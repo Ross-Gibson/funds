@@ -27,6 +27,7 @@ import { Routes } from '../navigation/routes';
 import ExpenseListItem from '../components/molecules/ExpenseListItem';
 import { RootState } from '../store/types';
 import { getExpenseById } from '../store/expenses/selector';
+import { addReceipt as addReceiptAction } from '../store/expenses/actions';
 
 const goldenRatio = 1.62;
 
@@ -65,8 +66,12 @@ const mapState = (state: RootState, ownProps: ExpenseProps) => ({
   expense: getExpenseById(state, ownProps.route.params.expense.id),
 });
 
+const mapDispatch = {
+  addReceipt: addReceiptAction,
+};
+
 // eslint-disable-next-line prettier/prettier
-const connector = connect(mapState, {});
+const connector = connect(mapState, mapDispatch);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
@@ -78,7 +83,7 @@ interface ExpenseProps {
 
 type Props = ExpenseProps & PropsFromRedux;
 
-function Expense({ navigation, theme, expense }: Props) {
+function Expense({ navigation, theme, expense, addReceipt }: Props) {
   const { colors } = theme;
   const { RTL, translations } = useLocalization();
 
@@ -96,6 +101,7 @@ function Expense({ navigation, theme, expense }: Props) {
 
   const handleAddReceipt = () => {
     if (Platform.OS === 'ios') {
+      addReceipt({ receipt: '', expenseId: expense.id });
       NativeModules.NavigationBridge.showAddReceipt();
     }
   };

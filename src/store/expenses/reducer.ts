@@ -4,6 +4,7 @@ const initialState: ExpensesState = {
   loading: false,
   expenses: [],
   savingComment: false,
+  uploadingReceipt: false,
 };
 
 const expenses = (state = initialState, action: ExpensesAction) => {
@@ -24,6 +25,7 @@ const expenses = (state = initialState, action: ExpensesAction) => {
         ...state,
         savingComment: true,
       };
+    case ExpensesActionTypes.ADD_RECEIPT_SUCCESS:
     case ExpensesActionTypes.ADD_COMMENT_SUCCESS:
       return {
         ...state,
@@ -32,7 +34,19 @@ const expenses = (state = initialState, action: ExpensesAction) => {
             ? action.payload.expense
             : expense,
         ),
-        savingComment: false,
+        savingComment:
+          action.type === ExpensesActionTypes.ADD_COMMENT_SUCCESS
+            ? false
+            : state.savingComment,
+        uploadingReceipt:
+          action.type === ExpensesActionTypes.ADD_RECEIPT_SUCCESS
+            ? false
+            : state.uploadingReceipt,
+      };
+    case ExpensesActionTypes.ADD_RECEIPT_REQUEST:
+      return {
+        ...state,
+        uploadingReceipt: true,
       };
     default:
       return state;
