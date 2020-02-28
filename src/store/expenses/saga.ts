@@ -100,6 +100,8 @@ function* addReceipt(action: AddReceiptAction) {
     );
     const responseJson = yield call([response, response.json]);
 
+    console.log('Added receipt to expense:', responseJson);
+
     yield put({
       type: ExpensesActionTypes.ADD_RECEIPT_SUCCESS,
       payload: { expense: responseJson },
