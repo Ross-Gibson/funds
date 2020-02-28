@@ -32,7 +32,7 @@ Follow the [React Native Getting Started](https://facebook.github.io/react-nativ
 - :white_check_mark: Add a comment to an expense
 - :white_check_mark: Filter expenses by missing receipts
 - :white_check_mark: Search expenses by date, comment, amount etc
-- :white_check_mark: Localised for English, French and Spanish (I used Google translate, so excuse me if the translations are poor)
+- :white_check_mark: Localised for English, French and Spanish (I used Google translate, so apologies if the translations are poor)
 - :white_check_mark: Right to Left UI support - works with languages like Arabic
 - :white_check_mark: Dark Mode support, and all components are fully themed
 - :white_check_mark: Typescript
