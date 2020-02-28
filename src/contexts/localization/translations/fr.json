@@ -11,5 +11,6 @@
   "expenseAddComment.description": "Expliquez en quelques mots la raison de cette dépense",
   "expenseAddComment.saveButton.title": "sauvegarder",
   "options.tabBar.title": "Les options",
-  "options.title": "Les options"
+  "options.title": "Les options",
+  "options.showNativeView.title": "Passez à Swift!"
 }

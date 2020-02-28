@@ -30,7 +30,39 @@
                     <view key="view" contentMode="scaleToFill" id="5fC-kF-8jM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'm sorry, this is not finished" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQL-gK-Vzx">
+                                <rect key="frame" x="16" y="124" width="382" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sad-face" translatesAutoresizingMaskIntoConstraints="NO" id="bEG-GT-Ab3">
+                                <rect key="frame" x="147" y="213" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="3PT-ZN-k99"/>
+                                    <constraint firstAttribute="height" constant="120" id="ZE2-dj-bwE"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEi-k2-bSm">
+                                <rect key="frame" x="16" y="473" width="382" height="95.5"/>
+                                <string key="text">With more time this view was going to link to a photo selection flow. Giving you the ability to either select a photo from your library, or use your camera to take a photo.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.20107379559999999" blue="0.40181797740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="QQL-gK-Vzx" firstAttribute="leading" secondItem="dyX-NZ-gOc" secondAttribute="leading" constant="16" id="0wU-4t-jws"/>
+                            <constraint firstItem="QQL-gK-Vzx" firstAttribute="top" secondItem="dyX-NZ-gOc" secondAttribute="top" constant="80" id="FYV-Uz-M8i"/>
+                            <constraint firstAttribute="trailing" secondItem="jEi-k2-bSm" secondAttribute="trailing" constant="16" id="HkF-Cd-Ugb"/>
+                            <constraint firstItem="dyX-NZ-gOc" firstAttribute="trailing" secondItem="QQL-gK-Vzx" secondAttribute="trailing" constant="16" id="ZlC-TK-dhZ"/>
+                            <constraint firstItem="bEG-GT-Ab3" firstAttribute="top" secondItem="QQL-gK-Vzx" secondAttribute="bottom" constant="60" id="fSZ-9k-31J"/>
+                            <constraint firstItem="jEi-k2-bSm" firstAttribute="top" secondItem="bEG-GT-Ab3" secondAttribute="bottom" constant="140" id="pko-RR-Ni6"/>
+                            <constraint firstItem="bEG-GT-Ab3" firstAttribute="centerX" secondItem="5fC-kF-8jM" secondAttribute="centerX" id="tuU-Am-3YY"/>
+                            <constraint firstItem="jEi-k2-bSm" firstAttribute="leading" secondItem="dyX-NZ-gOc" secondAttribute="leading" constant="16" id="vUZ-mW-qrY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="dyX-NZ-gOc"/>
                     </view>
                     <navigationItem key="navigationItem" id="ijc-D0-Pou"/>
@@ -46,7 +78,30 @@
                     <view key="view" contentMode="scaleToFill" id="uHQ-zr-CgM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Proof of concept" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9j-hK-XBV">
+                                <rect key="frame" x="16" y="124" width="382" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYi-cL-SuI">
+                                <rect key="frame" x="16" y="233" width="382" height="95.5"/>
+                                <string key="text">This view is to demonstrate a transition from the navigation stack managed by react-navigation to a native Swift UIViewController.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.20107379559999999" blue="0.40181797740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="K9j-hK-XBV" firstAttribute="top" secondItem="7wi-L2-2C9" secondAttribute="top" constant="80" id="14m-8q-w4I"/>
+                            <constraint firstItem="7wi-L2-2C9" firstAttribute="trailing" secondItem="QYi-cL-SuI" secondAttribute="trailing" constant="16" id="HI1-ti-nOS"/>
+                            <constraint firstItem="QYi-cL-SuI" firstAttribute="top" secondItem="K9j-hK-XBV" secondAttribute="bottom" constant="80" id="SSS-P8-uLk"/>
+                            <constraint firstAttribute="trailing" secondItem="K9j-hK-XBV" secondAttribute="trailing" constant="16" id="cvb-VH-9UK"/>
+                            <constraint firstItem="K9j-hK-XBV" firstAttribute="leading" secondItem="7wi-L2-2C9" secondAttribute="leading" constant="16" id="u2v-gs-zQC"/>
+                            <constraint firstItem="QYi-cL-SuI" firstAttribute="leading" secondItem="7wi-L2-2C9" secondAttribute="leading" constant="16" id="u6d-Ro-PDN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="7wi-L2-2C9"/>
                     </view>
                 </viewController>
@@ -55,4 +110,7 @@
             <point key="canvasLocation" x="2783" y="798"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="sad-face" width="2400" height="2400"/>
+    </resources>
 </document>

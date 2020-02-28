@@ -1,15 +1,16 @@
 import React from 'react';
 import { View, NativeModules, Platform } from 'react-native';
-import { NavigationParams } from 'react-navigation';
 import { Theme, withTheme, List } from 'react-native-paper';
 
+import { useLocalization } from '../contexts/localization';
+
 interface Props {
-  navigation: NavigationParams;
   theme: Theme;
 }
 
-function Options({ navigation, theme }: Props) {
+function Options({ theme }: Props) {
   const { colors } = theme;
+  const { translations } = useLocalization();
 
   const handleShowDetail = () => {
     if (Platform.OS === 'ios') {
@@ -19,7 +20,10 @@ function Options({ navigation, theme }: Props) {
 
   return (
     <View style={{ backgroundColor: colors.background }}>
-      <List.Item title="Show detail" onPress={() => handleShowDetail()} />
+      <List.Item
+        title={translations['options.showNativeView.title']}
+        onPress={() => handleShowDetail()}
+      />
     </View>
   );
 }

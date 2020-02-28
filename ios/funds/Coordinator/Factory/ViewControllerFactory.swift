@@ -24,14 +24,14 @@ final class ViewControllerFactory {
     func instantiateImageSourceViewController() -> ImageSourceViewController {
         // TODO: Pull-out the identifier to a strings file.
         let imageSourceVC = UIStoryboard.entry.instantiateViewController(withIdentifier: "ImageSourceViewController") as! ImageSourceViewController
-//      imageSourceVC.viewModel =
+        // TODO: Configure the view model here.
         return imageSourceVC
     }
 
   func instantiateDetailViewController() -> DetailViewController {
-      // TODO: Pull-out the identifier to a strings file.
-      let detailVC = UIStoryboard.entry.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-      return detailVC
+        // TODO: Pull-out the identifier to a strings file.
+        let detailVC = UIStoryboard.entry.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        return detailVC
   }
 
 }

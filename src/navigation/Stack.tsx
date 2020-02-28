@@ -15,7 +15,7 @@ import { Expense as ExpenseType } from '../store/expenses/types';
 import {
   MaterialHeaderButtons,
   Item,
-} from '../components/MaterialHeaderButtons';
+} from '../components/molecules/MaterialHeaderButtons';
 
 import Expense from '../screens/Expense';
 import ExpenseAddComment from '../screens/ExpenseAddComment';
