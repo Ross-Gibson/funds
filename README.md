@@ -1,4 +1,4 @@
-# Funds
+# :moneybag: Funds
 
 > Fund - "A sum of money saved or made available for a particular purpose".
 
@@ -28,19 +28,23 @@ Follow the [React Native Getting Started](https://facebook.github.io/react-nativ
 
 ## Features
 
-:checkmark: View a list of expenses
-:checkmark: Add a comment to an expense
-:checkmark: Filter expenses by missing receipts
-:checkmark: Search expenses
-:checkmark: Localised for English, French and Spanish (I used Google translate, so excuse me if the translations are poor)
-:checkmark: Right to Left UI support - works with languages like Arabic
-:checkmark: Dark Mode support, and all components are fully themed
-:cross: Add a receipt image to an expense
-:cross: e2e, unit and UI tests
+- :white_check_mark: View a list of expenses
+- :white_check_mark: Add a comment to an expense
+- :white_check_mark: Filter expenses by missing receipts
+- :white_check_mark: Search expenses by date, comment, amount etc
+- :white_check_mark: Localised for English, French and Spanish (I used Google translate, so excuse me if the translations are poor)
+- :white_check_mark: Right to Left UI support - works with languages like Arabic
+- :white_check_mark: Dark Mode support, and all components are fully themed
+- :white_check_mark: Typescript
+- :white_check_mark: Redux & Redux Sagas
+- :white_check_mark: React Hooks Context API
+- :warning: Add a receipt image to an expense (started, but not finished)
+> NOTE: Although the image selection for the receipt flow is not fully linked-up, I have added a dummy call to upload a photo via the API. You can test this by running the app locally and then navigating to add a receipt for an expense. When you tap the pink “Add receipt” button you’ll see a console log for “Added receipt to expense:” followed by the JSON of the expense object. In the receipts object you should see the url of the added image.
+- :x: e2e, unit and UI tests
 
 ## Approach
 
-I have used a mixed approach on the JS side with both Redux-Sagas and React Hooks (mainly as proof of concept). The Sagas manage the expenses state and anything that would be persisted. As well as handing the flow of actions and async API calls. The Hooks side of things use the Context API and currently only manage the translations, but could be expanded to handle things like presenting alerts and notifications in the future.
+I have used a mixed approach on the JS side with both Redux-Sagas and React Hooks (mainly as proof of concept). The Sagas manage the expenses state and anything that would be persisted. As well as handling the flow of actions and async API calls. The Hooks side of things use the Context API and currently only manage the translations, but could be expanded to handle things like presenting alerts and notifications in the future.
 
 For the UI I have opted for [atomic design](https://atomicdesign.bradfrost.com/chapter-2/), and have chosen to built on top of [react-native-paper](https://callstack.github.io/react-native-paper/index.html). This approach lends itself well towards testing (although I did not get around to this), and the use of React Native Paper, gives a good base to build upon for theming and localisation.
 
